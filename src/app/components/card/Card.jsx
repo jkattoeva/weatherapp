@@ -7,11 +7,17 @@ export default function CardPage() {
     <>
       <div className={cls.card}>
         <div className={cls.search}>
-          <form>
-            <input type="text" />
+          <input
+            className={cls.input_field}
+            type="text"
+            placeholder="type city name"
+            spellCheck="false"
+          />
+          <button className={cls.search_button}>
             <Image src={SearchIcon} alt="search icon" />
-          </form>
+          </button>
         </div>
+        <div className={cls.weather}></div>
       </div>
     </>
   );

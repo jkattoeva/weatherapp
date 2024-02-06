@@ -1,8 +1,8 @@
 import RootLayoutClient from "./layout.uc";
 import "./globals.css";
-import { Inter } from "@next/font/google";
+import { Montserrat } from "@next/font/google";
 
-const font = Inter({ subsets: ["latin"] });
+const font = Montserrat({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (

@@ -1,0 +1,53 @@
+.card {
+  width: 90%;
+  max-width: 470px;
+
+  margin: 100px auto 0;
+  padding: 40px 35px;
+  text-align: center;
+
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  color: #fff;
+  border-radius: 20px;
+
+  .search {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .input_field {
+      height: 60px;
+      flex: 1;
+
+      padding: 10px 25px;
+      margin-right: 16px;
+
+      border: 0;
+      outline: 0;
+
+      background-color: #ebfffc;
+      color: #555;
+      border-radius: 20px;
+      font-size: 18px;
+    }
+
+    .search_button {
+      width: 60px;
+      height: 60px;
+
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+
+      background-color: #ebfffc;
+      border-radius: 50%;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

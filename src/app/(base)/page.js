@@ -1,7 +1,12 @@
+import CardPage from "../components/card/Card";
+import cls from "@/styles/HomePage.module.scss";
+
 export default function HomePage() {
   return (
     <>
-      <h1>hey</h1>
+      <div className={cls.home_page}>
+        <CardPage />
+      </div>
     </>
   );
 }
