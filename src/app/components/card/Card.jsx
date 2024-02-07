@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   SearchIcon,
@@ -5,9 +7,34 @@ import {
   WindIcon,
   rain,
 } from "@/app/components/card/index";
+import { useState } from "react";
+import axios from "axios";
 import cls from "./Card.module.scss";
 
 export default function CardPage() {
+  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
+
+  const handleSearch = async () => {
+    if (!city.trim()) return;
+
+    try {
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a89004c9b5712dc99895447b0c7ee4e3`
+      );
+
+      setWeatherData(response.data);
+    } catch (error) {
+      console.error("There was an error:", error);
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <>
       <div className={cls.card}>
@@ -15,35 +42,40 @@ export default function CardPage() {
           <input
             className={cls.input_field}
             type="text"
-            placeholder="type city name"
+            placeholder="Type city name"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
             spellCheck="false"
+            onKeyDown={handleKeyPress}
           />
-          <button className={cls.search_button}>
-            <Image src={SearchIcon} alt="search icon" />
+          <button className={cls.search_button} onClick={handleSearch}>
+            <Image src={SearchIcon} alt="search icon" width={20} height={20} />
           </button>
         </div>
-        <div className={cls.weather}>
-          <Image src={rain} alt="weather icon" className={cls.weather_icon} />
-          <h1 className={cls.temp}>−6°</h1>
-          <h2 className={cls.city}>New York</h2>
+        {weatherData && (
+          <div className={cls.weather}>
+            <Image src={rain} alt="weather icon" className={cls.weather_icon} />
+            <h1 className={cls.temp}>{weatherData.main.temp}°</h1>
+            <h2 className={cls.city}>{weatherData.name}</h2>
 
-          <div className={cls.details}>
-            <div className={cls.col}>
-              <Image src={HumidityIcon} alt="humidity" width={30} />
-              <div>
-                <p className={cls.humidity}>50%</p>
-                <p>Humidity</p>
+            <div className={cls.details}>
+              <div className={cls.col}>
+                <Image src={HumidityIcon} alt="humidity" width={30} />
+                <div>
+                  <p className={cls.humidity}>{weatherData.main.humidity}%</p>
+                  <p>Humidity</p>
+                </div>
               </div>
-            </div>
-            <div className={cls.col}>
-              <Image src={WindIcon} alt="wind" width={30} />
-              <div>
-                <p className={cls.wind}>15 km/h</p>
-                <p>Wind Speed</p>
+              <div className={cls.col}>
+                <Image src={WindIcon} alt="wind" width={30} />
+                <div>
+                  <p className={cls.wind}>{weatherData.wind.speed} km/h</p>
+                  <p>Wind Speed</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
