@@ -21,7 +21,7 @@
       height: 60px;
       flex: 1;
 
-      padding: 10px 25px;
+      padding: 0.8rem 1.6rem;
       margin-right: 16px;
 
       border: 0;
@@ -47,6 +47,43 @@
       img {
         width: 30px;
         height: 30px;
+      }
+    }
+  }
+
+  .weather {
+    .weather_icon {
+      width: 170px;
+      margin-top: 2rem;
+    }
+
+    h1 {
+      font-size: 5rem;
+      font-weight: 500;
+    }
+    h2 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      margin-top: -0.8rem;
+    }
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0 1.2rem;
+      margin-top: 3.2rem;
+
+      .col {
+        display: flex;
+        align-items: center;
+        text-align: left;
+
+        img {
+          width: 40px;
+          margin-right: 0.8rem;
+        }
       }
     }
   }
