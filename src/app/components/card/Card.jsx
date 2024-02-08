@@ -20,6 +20,7 @@ export default function CardPage() {
   const [city, setCity] = useState("");
   const [weatherIcon, setWeatherIcon] = useState(clear);
   const [weatherData, setWeatherData] = useState({});
+  const [showWeather, setShowWeather] = useState(false);
 
   const handleSearch = async () => {
     if (!city.trim()) return;
@@ -30,6 +31,7 @@ export default function CardPage() {
       );
 
       setWeatherData(response.data);
+      setShowWeather(true);
 
       const iconCode = response.data.weather[0].icon;
 
@@ -52,6 +54,7 @@ export default function CardPage() {
       }
     } catch (error) {
       console.error("There was an error:", error);
+      setShowWeather(false);
     }
   };
 
@@ -78,7 +81,7 @@ export default function CardPage() {
             <Image src={SearchIcon} alt="search icon" width={20} height={20} />
           </button>
         </div>
-        {weatherData && (
+        {showWeather && weatherData && (
           <div className={cls.weather}>
             <Image
               src={weatherIcon}
