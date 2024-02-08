@@ -2,3 +2,8 @@ export { default as SearchIcon } from "@/assets/search.svg";
 export { default as HumidityIcon } from "@/assets/humidity.png";
 export { default as WindIcon } from "@/assets/wind.png";
 export { default as rain } from "@/assets/rain.png";
+export { default as clouds } from "@/assets/clouds.png";
+export { default as clear } from "@/assets/clear.png";
+export { default as drizzle } from "@/assets/drizzle.png";
+export { default as mist } from "@/assets/mist.png";
+export { default as snow } from "@/assets/snow.png";
