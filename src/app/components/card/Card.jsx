@@ -14,6 +14,7 @@ import {
 } from "@/app/components/card/index";
 import { useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import cls from "./Card.module.scss";
 
 export default function CardPage() {
@@ -82,18 +83,34 @@ export default function CardPage() {
           </button>
         </div>
         {showWeather && weatherData && (
-          <div className={cls.weather}>
-            <Image
-              src={weatherIcon}
-              alt="weather icon"
-              className={cls.weather_icon}
-            />
-            <h1 className={cls.temp}>
-              {weatherData.main && weatherData.main.temp}°
-            </h1>
-            <h2 className={cls.city}>{weatherData.name}</h2>
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={cls.weather}
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Image
+                src={weatherIcon}
+                alt="weather icon"
+                className={cls.weather_icon}
+              />
+              <h1 className={cls.temp}>
+                {weatherData.main && weatherData.main.temp}°
+              </h1>
+              <h2 className={cls.city}>{weatherData.name}</h2>
+            </motion.div>
 
-            <div className={cls.details}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className={cls.details}
+            >
               <div className={cls.col}>
                 <Image src={HumidityIcon} alt="humidity" width={30} />
                 <div>
@@ -112,8 +129,8 @@ export default function CardPage() {
                   <p>Wind Speed</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </>
